@@ -2,100 +2,123 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scnr = new Scanner(System.in);
-        int flip = 0, iphone = 0, a70 = 0, redmi = 0, s21 = 0, motog = 0;
-        String auxiliar;
+        //Leonardo Luize
+        //Leonardo Falango
+        //André Kovalski
 
-        System.out.println("Voce tem interesse em jogar jogos pesados no seu celular?");
-        auxiliar = scnr.nextLine();
-        if (auxiliar.equals("sim")) {
-            flip++;
-            redmi++;
-            iphone++;
+        System.out.println("\n| Descubra o seu celular ideal |");
+        System.out.println("Responda apenas com sim ou nao!");
+
+        Scanner scnr = new Scanner(System.in);
+        int aux = 0, index = 0;
+        int[] celulares = new int[6];
+        String[] nome = new String[6];
+        String auxiliar;
+        nome[0] = "Z Flip 3";
+        nome[1] = "Iphone 13";
+        nome[2] = "A70";
+        nome[3] = "Redmi note 9";
+        nome[4] = "S21";
+        nome[5] = "MotoG 100";
+
+        for(int x = 0;celulares.length> x; x++){
+            celulares[x] = 0;
         }
 
-        System.out.println("Voce usa muito o celular durante o dia?");
+        System.out.println("\nVoce tem interesse em jogar jogos pesados no seu celular?");
         auxiliar = scnr.nextLine();
         if (auxiliar.equals("sim")) {
-            flip++;
-            redmi++;
-            s21++;
-            iphone++;
+            celulares[0]++;
+            celulares[1]++;
+            celulares[3]++;
+            celulares[5] += 2;
+        }
+
+        System.out.println("\nVoce usa muito o celular durante o dia?");
+        auxiliar = scnr.nextLine();
+        if (auxiliar.equals("sim")) {
+            celulares[0]++;
+            celulares[3]++;
+            celulares[4]++;
+            celulares[1]++;
         }
 
 
         //Se as duas perguntas forem verdadeiras
-        if (flip == 2 || redmi == 2 || iphone > 1) {
-            System.out.println("Voce gosta de celulares dobraveis?");
+        if (celulares[0] == 2 || celulares[3] == 2 || celulares[1] > 1) {
+            System.out.println("\nVoce gosta de celulares dobraveis?");
             auxiliar = scnr.nextLine();
             if (auxiliar.equals("sim")) {
-                flip += 10;
-            } else {
-                flip--;
-                System.out.println("Voce usa o Instagram profissionalmente?");
-                auxiliar = scnr.nextLine();
-                if (auxiliar.equals("sim")) {
-                    iphone++;
-                }
+                celulares[0] += 100;
             }
         }
 
         //Se uma pergunta apenas for verdadeira
-        if (s21 == 0) { //entao o usuario tem interesse em jogar jogos pesados
-            System.out.println("Voce joga casualmente?");
+        if (celulares[4] > 0) { //entao o usuario tem interesse em jogar jogos pesados
+            System.out.println("\nVoce joga casualmente?");
             auxiliar = scnr.nextLine();
             if (auxiliar.equals("sim")) {
-                a70++;
-                motog++;
+                celulares[2]++;
+                celulares[3]++;
             }
 
-            System.out.println("Voce usa as rede sociais casualmente?");
+            System.out.println("\nVoce usa as rede sociais casualmente?");
             auxiliar = scnr.nextLine();
             if (auxiliar.equals("sim")) {
-                iphone++;
-                redmi++;
+                celulares[3] += 2;
+                celulares[5]++;
             }
 
         }
 
-        if(s21 == 1){
-            System.out.println("Você usa as redes sociais profissionalmente?");
+        if(celulares[4] == 1){
+            System.out.println("\nVoce usa as redes sociais profissionalmente?");
             auxiliar = scnr.nextLine();
             if (auxiliar.equals("sim")) {
-                iphone += 2;
-                s21++;
+                celulares[1] += 2;
+                celulares[4]++;
+                celulares[3]++;
             }
 
-            System.out.println("Quer uma tela grande?");
+            System.out.println("\nQuer uma tela grande?");
             auxiliar = scnr.nextLine();
             if (auxiliar.equals("sim")) {
-                redmi++;
-                flip++;
-                s21++;
-                a70++;
-            }
-        }
-
-        if(s21 == 0 || motog == 0 || a70 == 0 || iphone == 0 || redmi == 0){
-            System.out.println("Deseja uma câmera de qualidade?");
-            auxiliar = scnr.nextLine();
-            if (auxiliar.equals("sim")) {
-                flip++;
-                iphone++;
-                s21++;
-                a70++;
-            }
-
-            System.out.println("Deseja um celular custo befício?");
-            auxiliar = scnr.nextLine();
-            if (auxiliar.equals("sim")) {
-                a70 += 2;
-                motog++;
+                celulares[0]++;
+                celulares[2]++;
+                celulares[3]++;
+                celulares[4] += 2;
+                celulares[5] += 2;
             }
         }
 
+        if(celulares[4] == 0 || celulares[5] == 0 || celulares[2] == 0 || celulares[1] == 0 || celulares[3] == 0){
+            System.out.println("\nDeseja uma camera de qualidade?");
+            auxiliar = scnr.nextLine();
+            if (auxiliar.equals("sim")) {
+                celulares[0]++;
+                celulares[1]++;
+                celulares[4]++;
+                celulares[2]++;
+            }
 
+            System.out.println("\nDeseja um celular custo beneficio?");
+            auxiliar = scnr.nextLine();
+            if (auxiliar.equals("sim")) {
+                celulares[1] -= 5;
+                celulares[2] += 5;
+                celulares[5] += 2;
+            }
+        }
+
+        for(int x = 0; celulares.length > x; x++ ){
+            if(celulares[x] > aux) {
+                aux = celulares[x];
+                index = x;
+            }
+        }
+
+        System.out.println("\nO seu celular ideal é: "+ nome[index]);
+        System.out.println("Pix para comprar: 090.933.699-70");
 
     }
 }
-
